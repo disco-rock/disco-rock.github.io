@@ -22,22 +22,25 @@
         }
 
         /* Linkes Menü */
-        .sidebar {
-            position: fixed;
+       /* SIDEBAR STANDARD – Desktop */
+.sidebar {
+    position: fixed;
             left: 0;
             top: 0;
             height: 100%;
             width: 180px;
-            background-color: #f0e6d6;
+            background-color: burlywood;
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-        }
-
-        .sidebar a {
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+.sidebar a {
             display: block;
             padding: 15px;
             font-size: 20px;
-            color: black;
+            color: red;
+        text-shadow: 3px 3px 8px white;
             text-decoration: none;
             text-align: center;
         }
@@ -46,11 +49,44 @@
             background-color: #e3d4bc;
         }
 
-        /* Inhalt rechts neben dem Menü */
-        .content {
-            margin-left: 200px;
-            padding: 20px;
-        }
+/* Inhalt rückt rechts neben Sidebar */
+.content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+/* Hamburger Button */
+.hamburger {
+    display: none; /* Desktop: versteckt */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10000;
+    font-size: 35px;
+    cursor: pointer;
+    background-color: burlywood;
+}
+
+/* MOBILE VERSION */
+@media (max-width: 768px) {
+
+    .sidebar {
+        transform: translateX(-100%); /* Sidebar versteckt */
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Sidebar sichtbar */
+    }
+
+    .hamburger {
+        display: block; /* nur mobil sichtbar */
+    }
+
+    .content {
+        margin-left: 0; /* Content unter Hamburger */
+    }
+}
+
 
         audio {
             width: 300px;
@@ -60,29 +96,65 @@
             display: table;
         }
         </style>
+
+        <style>
+    /* Responsive Style für mobile Geräte */
+   @media (max-width: 600px) {
+    #tango-text {
+        font-size: 20px !important;
+        left: 40% !important;
+        top: 5%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        white-space: normal !important;     /* ← ermöglicht Zeilenumbruch */
+              /* ← schön mittig */
+    }
+}
+</style>
     </header>
-<main>
+    <div class="hamburger" onclick="toggleSidebar()">☰&nbsp;</div>
+
+
     <!-- Linkes Menü -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <a>Bio</a>
         <a>Presse</a>
         <a href="songs.html">Songs</a>
         <a>Feet Pics</a>
     </div>
-    
-    <div style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;">
-        <p style="font-size: 80px;">
-            🪩🪩🪩🪩<br>
-            TANGO BRAVO
-            </p>
-            <img src="804d9e57-81ed-4ed2-8a5e-d04c4ffc71a6.jpg" style="width: 300px; height: auto;">
-        <br>
+
+    <div class="content">
+    <div style="position: relative; width: 500px; max-width: 100%; margin: 0 auto;">
+
+    <img src="https://disco-rock.github.io/804d9e57-81ed-4ed2-8a5e-d04c4ffc71a6.jpg"
+         style="width: 100%; height: auto; display: block;">
+
+    <div id="tango-text" style="
+        position: absolute;
+        top: 25%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: red;
+        text-shadow: 3px 3px 8px yellow;
+        z-index: 10;
+        white-space: nowrap;
+    ">
+    TANGO BRAVO
     </div>
+
+</div>
+
+
+<br>
 <hr>
-    <div style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif;">
-    <p style="font-size: 40px; margin-bottom: 20px;">Konzerte:
-    </p>
-    </div>
+
+<div style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif;margin-bottom: 100px;">
+    <p style="font-size: 40px; margin-bottom: 20px;">Konzerte:</p>
+    <p><b>04.07.2025</b> <br>Altstadtfest Kaiserslautern</p>
+</div>
+
 
 
 
@@ -91,12 +163,17 @@
       <p> DISCO ROCK FOREVER <3 </p>
         <hr>
     </div>
+</div>
 
    
 
  
-  </main>
-
+  <script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("open");
+}
+</script>
+    </body>
     <footer>
     </footer>
      
